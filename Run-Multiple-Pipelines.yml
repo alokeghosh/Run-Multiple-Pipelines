@@ -1,1 +1,18 @@
+trigger:
+  branches:
+    include:
+    - master
+  pipelines:
+    - pipeline: pipeline1
+      source: <pipeline1_name>
+      trigger:
+        branches:
+          include:
+          - master
+    - pipeline: pipeline2
+      source: <pipeline2_name>
+      trigger:
+        branches:
+          include:
+          - master
 
