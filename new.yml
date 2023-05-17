@@ -32,7 +32,7 @@ jobs:
     pool:
       name: alokeagent
     steps:
-      - task: TriggerBuild
+      - task: TriggerBuild@1
         inputs:
           buildType: 'specificBuild'
           project: aks-devops-project
@@ -40,7 +40,7 @@ jobs:
           version: 'latest'
           waitOnBuild: true
         displayName: 'Trigger Pipeline1'
-      - task: TriggerBuild
+      - task: TriggerBuild@2
         inputs:
           buildType: 'specificBuild'
           project: aks-devops-project
@@ -48,7 +48,7 @@ jobs:
           version: 'latest'
           waitOnBuild: true
         displayName: 'Trigger Pipeline2'
-      - task: TriggerBuild
+      - task: TriggerBuild@3
         inputs:
           buildType: 'specificBuild'
           project: aks-devops-project
