@@ -13,19 +13,12 @@ resources:
         branches:
           include:
             - main
-    - pipeline: Pipeline2
-      project: aks-devops-project
-      source: dev-aks-project-CI
-      trigger:
-        branches:
-          include:
-            - dev
 jobs:
   - job: TriggerPipelines
     pool:
       name: alokeagent
     steps:
-      - task: TriggerBuild@1
+      - task: TriggerBuild
         inputs:
           buildType: 'specificBuild'
           project: aks-devops-project
@@ -33,16 +26,8 @@ jobs:
           version: 'latest'
           waitOnBuild: true
         displayName: 'Trigger Pipeline1'
-      - task: TriggerBuild@2
-        inputs:
-          buildType: 'specificBuild'
-          project: aks-devops-project
-          pipeline: $(Pipeline2.pipelineId)
-          version: 'latest'
-          waitOnBuild: true
-        displayName: 'Trigger Pipeline2'
     dependsOn: 
       - Pipeline1
-      - Pipeline2
+ 
 
 
