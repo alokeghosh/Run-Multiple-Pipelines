@@ -5,7 +5,7 @@ trigger:
 pr:
   - none
 variables:
-  - group: <variable_group_name>
+  - group: test_group
 resources:
   pipelines:
     - pipeline: Pipeline1
