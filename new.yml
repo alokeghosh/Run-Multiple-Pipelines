@@ -20,13 +20,6 @@ resources:
         branches:
           include:
             - dev
-    - pipeline: Pipeline3
-      project: aks-devops-project
-      source: qa-aks-project-CI
-      trigger:
-        branches:
-          include:
-            - qa
 jobs:
   - job: TriggerPipelines
     pool:
@@ -48,16 +41,8 @@ jobs:
           version: 'latest'
           waitOnBuild: true
         displayName: 'Trigger Pipeline2'
-      - task: TriggerBuild@3
-        inputs:
-          buildType: 'specificBuild'
-          project: aks-devops-project
-          pipeline: $(Pipeline3.pipelineId)
-          version: 'latest'
-          waitOnBuild: true
-        displayName: 'Trigger Pipeline3'
     dependsOn: 
       - Pipeline1
       - Pipeline2
-      - Pipeline3
+
 
