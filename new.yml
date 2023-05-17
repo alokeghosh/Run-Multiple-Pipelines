@@ -18,13 +18,21 @@ jobs:
     pool:
       name: alokeagent
     steps:
-      - task: TriggerBuild
+      - task: AzureDevOpsTask@1
         inputs:
-          buildType: 'specificBuild'
-          project: aks-devops-project
-          pipeline: $(Pipeline1.pipelineId)
-          version: 'latest'
-          waitOnBuild: true
+          azureSubscriptionEndpoint: <azure_subscription_endpoint_name>
+          scriptType: PowerShell
+          scriptLocation: inlineScript
+          inlineScript: |
+            $token = "$(System.AccessToken)"
+            $url = "$(System.CollectionUri)"
+            $headers = @{ Authorization = "Bearer $token" }
+            $body = @{
+              definition = $(Pipeline1.pipelineId)
+              parameters = @{ }
+              resources = @{ repositories = @{ self = @{ refName = 'refs/heads/main' } } } }
+            }
+            Invoke-RestMethod -Uri "$url/_apis/pipelines/pipelineRuns?api-version=6.0-preview" -Method Post -Headers $headers -Body ($body | ConvertTo-Json -Depth 5)
         displayName: 'Trigger Pipeline1'
     dependsOn: 
       - Pipeline1
