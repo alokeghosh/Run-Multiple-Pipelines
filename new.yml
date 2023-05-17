@@ -18,7 +18,7 @@ jobs:
     pool:
       name: alokeagent
     steps:
-      - task: TriggerBuild@2
+      - task: TriggerBuild
         inputs:
           buildType: 'specificBuild'
           project: aks-devops-project
