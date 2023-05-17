@@ -20,7 +20,7 @@ jobs:
     steps:
       - task: AzureDevOpsTask@1
         inputs:
-          azureSubscriptionEndpoint: <azure_subscription_endpoint_name>
+          #azureSubscriptionEndpoint: <azure_subscription_endpoint_name>
           scriptType: PowerShell
           scriptLocation: inlineScript
           inlineScript: |
