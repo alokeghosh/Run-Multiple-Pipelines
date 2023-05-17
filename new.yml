@@ -4,6 +4,8 @@ trigger:
   - none
 pr:
   - none
+variables:
+  - group: <variable_group_name>
 resources:
   pipelines:
     - pipeline: Pipeline1
