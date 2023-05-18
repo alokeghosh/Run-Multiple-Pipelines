@@ -22,6 +22,6 @@ spec:
     spec:
       containers:
       - name: {{ .Values.containersname.name }}
-        image: "{{ .Values.acrrepository }}:{{ .Values.imageTag }}"
+        image: "{{ .Values.acrrepository }}:#{Build.BuildId}#"
         ports:
         - containerPort: {{ .Values.containersname.port }}
