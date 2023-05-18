@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: {{ .Values.projectname }}-ns
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.projectname }}-deploy
+  namespace: {{ .Values.projectname }}-ns
+  labels:
+    app: {{ .Values.labelsname }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.labelsname }}
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.labelsname }}
+    spec:
+      containers:
+      - name: {{ .Values.containersname.name }}
+        image: "{{ .Values.acrrepository }}:{{ .Values.imageTag }}"
+        ports:
+        - containerPort: {{ .Values.containersname.port }}

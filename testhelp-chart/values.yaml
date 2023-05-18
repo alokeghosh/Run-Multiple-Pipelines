@@ -1,0 +1,12 @@
+projectname: testhelmchart		
+labelsname:	helm
+replicas:	2	
+containersname:
+  name:	testhelmchart
+  port: 80
+acrrepository: devopesakscr.azurecr.io/alokeghoshyamlrepo
+imageTag: 105
+servicesname: testhelmchart
+serviceport: 80
+ingresssname: testhelmchart
+hostFQDN: devhelmproject.alokeg.local
